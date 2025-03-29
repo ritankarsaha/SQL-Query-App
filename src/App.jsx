@@ -5,9 +5,11 @@ import { format } from 'sql-formatter'
 import { dummyGroups } from './data/dummyGroups'
 import QueryEditor from './components/QueryEditor'
 import QueryResultTable from './components/QueryResultTable'
+import { FiMoon, FiSun, FiPlus, FiX, FiCopy, FiTrash2, FiSave, FiPlay, FiCode, FiList } from 'react-icons/fi';
 
 function App() {
-  const [theme, setTheme] = useState('light')
+
+  const [theme, setTheme] = useState('dark')
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme')
     if (savedTheme) setTheme(savedTheme)
@@ -64,7 +66,6 @@ function App() {
   const [queryHistory, setQueryHistory] = useState([])
   const [querySnippets, setQuerySnippets] = useState([])
 
-
   useEffect(() => {
     const storedHistory = localStorage.getItem('queryHistory')
     if (storedHistory) {
@@ -72,14 +73,11 @@ function App() {
     }
   }, [])
 
-
   const [paginationEnabled, setPaginationEnabled] = useState(true)
   const [rowsPerPage, setRowsPerPage] = useState(50)
   const [currentPage, setCurrentPage] = useState(1)
 
-
   const activeTab = tabs.find((t) => t.id === activeTabId)
-
 
   const findExactMatchQuery = (sqlText) => {
     for (const g of dummyGroups) {
@@ -92,7 +90,6 @@ function App() {
     return null
   }
 
-
   function applyFilter(groupId, queryId) {
     if (groupId === 'customers') {
       if (queryId === 'cust_all') {
@@ -101,7 +98,7 @@ function App() {
           data: customersData,
         }
       } else if (queryId === 'cust_germany') {
-        const filtered = customersData.filter((r) => 
+        const filtered = customersData.filter((r) =>
           String(r.Country).trim().toLowerCase() === 'germany'
         )
         return {
@@ -144,7 +141,6 @@ function App() {
     }
     return { columns: [], data: [] }
   }
-  
 
   function naiveParse(sqlText) {
     const lower = sqlText.toLowerCase()
@@ -166,7 +162,6 @@ function App() {
     }
     return { columns: [], data: [] }
   }
-
 
   const handleGroupChange = (e) => {
     const newGroupId = e.target.value
@@ -229,7 +224,6 @@ function App() {
     } else {
       result = naiveParse(queryText)
     }
-   
     setTabs((prev) =>
       prev.map((tab) => {
         if (tab.id !== activeTabId) return tab
@@ -242,7 +236,6 @@ function App() {
     )
     setCurrentPage(1)
 
-
     const historyEntry = {
       queryText,
       timestamp: new Date().toLocaleString(),
@@ -250,7 +243,6 @@ function App() {
     const newHistory = [historyEntry, ...queryHistory]
     setQueryHistory(newHistory)
     localStorage.setItem('queryHistory', JSON.stringify(newHistory))
-
 
     if (tableAreaRef.current) {
       tableAreaRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -272,7 +264,6 @@ function App() {
     localStorage.setItem('savedQuery', activeTab.queryText)
     alert('Query saved!')
   }
-
 
   const handleFormatSQL = () => {
     if (!activeTab) return
@@ -312,7 +303,6 @@ function App() {
     }
   }
 
- 
   const handleClearHistory = () => {
     const confirmClear = window.confirm(
       'Are you sure you want to clear the entire query history?'
@@ -323,7 +313,6 @@ function App() {
     }
   }
 
-  
   const handleCopyHistory = (index) => {
     const text = queryHistory[index].queryText
     navigator.clipboard.writeText(text)
@@ -346,7 +335,6 @@ function App() {
     setQuerySnippets(newSnippets)
   }
 
- 
   const handleVisualizeData = () => {
     if (!activeTab) return
     let dataset = []
@@ -375,7 +363,6 @@ function App() {
     }
   }
 
-
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey && e.key === 'Enter') {
@@ -392,7 +379,6 @@ function App() {
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [activeTab, tabs])
-
 
   const handleTabClick = (tabId) => {
     setActiveTabId(tabId)
@@ -435,7 +421,6 @@ function App() {
     setActiveTabId(newTab.id)
   }
 
-  // Compute pagination variables if table data exists
   const totalPages =
     activeTab && activeTab.tableData
       ? Math.ceil(activeTab.tableData.length / rowsPerPage)
@@ -461,21 +446,19 @@ function App() {
     }
   }
 
-
   return (
     <div className={`app-container ${theme}`}>
       <div className="header">
         <h1>Dummy SQL Query Interface</h1>
-        <button onClick={toggleTheme}>
-          Toggle {theme === 'light' ? 'Dark' : 'Light'} Mode
+        <button onClick={toggleTheme} className="toggle-theme-btn">
+          {theme === 'light' ? <FiMoon /> : <FiSun />}
         </button>
         <p>
           Select a group &amp; sub-query from the dropdown, or type your own SQL.
-          Then click "Run Query" to see results. Press "+" for a new tab.
+          Then click <strong>"Run Query"</strong> to see results. Press <FiPlus /> for a new tab.
         </p>
       </div>
 
-      {/* TABS BAR */}
       <div className="tabs-bar">
         {tabs.map((tab) => (
           <div
@@ -491,18 +474,17 @@ function App() {
                 handleCloseTab(tab.id)
               }}
             >
-              x
+              <FiX />
             </button>
           </div>
         ))}
         <button className="new-tab" onClick={handleNewTab}>
-          +
+          <FiPlus />
         </button>
       </div>
 
       {activeTab && (
         <>
-          {/* Query Controls */}
           <div className="query-controls">
             <label htmlFor="groupSelect">Query Group:</label>
             <select
@@ -533,16 +515,27 @@ function App() {
             </select>
 
             <div className="run-buttons">
-              <button onClick={handleRunQuery}>Run Query</button>
-              <button onClick={handleClearQuery}>Clear Query</button>
-              <button onClick={handleFormatSQL}>Format SQL</button>
-              <button onClick={handleSaveSnippet}>Save as Snippet</button>
-              <button onClick={handleSaveQuery}>Save Query</button>
-              <button onClick={handleLoadQuery}>Load Saved Query</button>
-              {/* <button onClick={handleVisualizeData}>Visualize Data</button> */}
+              <button onClick={handleRunQuery}>
+                <FiPlay /> Run Query
+              </button>
+              <button onClick={handleClearQuery}>
+                <FiTrash2 /> Clear Query
+              </button>
+              <button onClick={handleFormatSQL}>
+                <FiCode /> Format SQL
+              </button>
+              <button onClick={handleSaveSnippet}>
+                <FiSave /> Save as Snippet
+              </button>
+              <button onClick={handleSaveQuery}>
+                <FiSave /> Save Query
+              </button>
+              <button onClick={handleLoadQuery}>
+                <FiList /> Load Saved Query
+              </button>
+              {/* <button onClick={handleVisualizeData}><FiList /> Visualize Data</button> */}
             </div>
 
-            {/* Pagination Settings */}
             <div className="pagination-settings">
               <label>
                 <input
@@ -573,7 +566,6 @@ function App() {
             </div>
           </div>
 
-          {/* Query Editor */}
           <div className="editor-area">
             <QueryEditor
               queryText={activeTab.queryText}
@@ -581,42 +573,77 @@ function App() {
             />
           </div>
 
-          {/* History & Snippets Panels */}
           <div className="history-snippets-container">
-            <div className="query-history">
-              <h3>Query History</h3>
-              <button onClick={handleClearHistory}>Clear History</button>
-              <ul>
-                {queryHistory.map((item, index) => (
-                  <li key={index}>
-                    <div onClick={() => handleQueryTextChange(item.queryText)}>
-                      <span className="history-text">{item.queryText}</span>
-                      <br />
-                      <span className="history-timestamp">{item.timestamp}</span>
-                    </div>
-                    <button onClick={() => handleCopyHistory(index)}>Copy</button>
-                    <button onClick={() => handleDeleteHistory(index)}>Delete</button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="query-snippets">
-              <h3>Query Snippets</h3>
-              <ul>
-                {querySnippets.map((item, index) => (
-                  <li key={index}>
-                    <div onClick={() => handleQueryTextChange(item.snippet)}>
-                      {item.name}
-                    </div>
-                    <button onClick={() => handleCopySnippet(index)}>Copy</button>
-                    <button onClick={() => handleDeleteSnippet(index)}>Delete</button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+  <div className="query-history">
+    <h3>
+      Query History
+      <button onClick={handleClearHistory} className="action-btn delete-btn">
+        <FiTrash2 />
+      </button>
+    </h3>
+    <ul>
+      {queryHistory.map((item, index) => (
+        <li key={index}>
+          <div 
+            className="history-item-content" 
+            onClick={() => handleQueryTextChange(item.queryText)}
+          >
+            <span className="history-text">{item.queryText}</span>
+            <span className="history-timestamp">{item.timestamp}</span>
           </div>
+          <div className="query-actions">
+            <button 
+              onClick={() => handleCopyHistory(index)} 
+              className="action-btn copy-btn"
+              title="Copy query"
+            >
+              <FiCopy />
+            </button>
+            <button 
+              onClick={() => handleDeleteHistory(index)} 
+              className="action-btn delete-btn"
+              title="Delete query"
+            >
+              <FiTrash2 />
+            </button>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div className="query-snippets">
+    <h3>Query Snippets</h3>
+    <ul>
+      {querySnippets.map((item, index) => (
+        <li key={index}>
+          <div 
+            className="snippet-item-content" 
+            onClick={() => handleQueryTextChange(item.snippet)}
+          >
+            <span className="snippet-name">{item.name}</span>
+          </div>
+          <div className="query-actions">
+            <button 
+              onClick={() => handleCopySnippet(index)} 
+              className="action-btn copy-btn"
+              title="Copy snippet"
+            >
+              <FiCopy />
+            </button>
+            <button 
+              onClick={() => handleDeleteSnippet(index)} 
+              className="action-btn delete-btn"
+              title="Delete snippet"
+            >
+              <FiTrash2 />
+            </button>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
 
-          {/* Table Results and Pagination Controls */}
           <div className="table-area" ref={tableAreaRef}>
             <QueryResultTable
               columns={activeTab.tableColumns}

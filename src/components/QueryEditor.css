@@ -1,46 +1,68 @@
-
 .query-editor-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-.query-editor-label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.query-editor-wrapper {
-  display: flex;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+  }
   
-}
-
-.line-numbers {
-  background-color: #f5f5f5;
-  color: #999;
-  text-align: right;
-  padding: 0.5rem;
-  user-select: none;
-  overflow-y: auto; 
-  border-right: 1px solid #ccc;
-}
-
-
-.line-number {
-  line-height: 1.4rem;
-}
-
-.query-editor-textarea,
-.code-textarea {
-  font-family: monospace;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  resize: vertical;
-  border: none;
-  outline: none;
-  width: 100%;
-  padding: 0.5rem;
-}
+  .query-editor-label {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+    padding: 0 0.5rem;
+    transition: var(--transition);
+  }
+  
+  .query-editor-wrapper {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--background);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  
+  .line-numbers {
+    background-color: var(--secondary);
+    color: var(--text-light);
+    text-align: right;
+    padding: 0.75rem 0.5rem;
+    user-select: none;
+    overflow-y: hidden;
+    border-right: 1px solid var(--border);
+    font-family: monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: var(--transition);
+  }
+  
+  .line-number {
+    min-height: 1.5em;
+  }
+  
+  .query-editor-textarea {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    resize: vertical;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--background);
+    color: var(--text);
+    min-height: 200px;
+    transition: var(--transition);
+  }
+  
+  .query-editor-textarea::placeholder {
+    color: var(--text-light);
+    opacity: 0.6;
+  }
+  
+  .query-editor-textarea:focus {
+    box-shadow: inset 0 0 0 2px var(--primary);
+  }
