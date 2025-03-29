@@ -3,26 +3,27 @@ import './QueryResultTable.css'
 import { FixedSizeList as List } from 'react-window'
 
 function RowModal({ row, columns, onClose }) {
-  if (!row) return null
-  return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h3>Row Details</h3>
-        <table className="modal-table">
-          <tbody>
-            {columns.map((col) => (
-              <tr key={col}>
-                <th>{col}</th>
-                <td>{row[col]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <button onClick={onClose}>Close</button>
+    if (!row) return null;
+    return (
+      <div className="modal-overlay active">
+        <div className="modal-content">
+          <h3>Row Details</h3>
+          <table className="modal-table">
+            <tbody>
+              {columns.map((col) => (
+                <tr key={col}>
+                  <th>{col}</th>
+                  <td>{row[col]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button onClick={onClose}>Close</button>
+        </div>
       </div>
-    </div>
-  )
-}
+    );
+  }
+  
 
 const QueryResultTable = ({ columns, data }) => {
   const [selectedRow, setSelectedRow] = useState(null)
