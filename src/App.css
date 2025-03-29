@@ -1,0 +1,165 @@
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.query-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.query-controls label {
+  font-weight: bold;
+}
+
+select {
+  padding: 0.3rem;
+  font-size: 1rem;
+}
+
+.run-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.run-buttons button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+
+.editor-area {
+  margin-bottom: 1rem;
+}
+
+
+.table-area {
+  margin-top: 2rem; 
+}
+
+.tabs-bar {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  position: relative;
+}
+
+.tab.active {
+  background-color: #fff;
+  font-weight: bold;
+}
+
+.close-tab {
+  margin-left: 0.5rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.new-tab {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.history-snippets-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+.query-history {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fafafa;
+  padding: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.query-history h3 {
+  margin-top: 0;
+}
+.query-history ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.query-history li {
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+.query-history li:hover {
+  background-color: #e0e0e0;
+}
+.history-text {
+  display: block;
+}
+.history-timestamp {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+
+.query-snippets {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fafafa;
+  padding: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.query-snippets h3 {
+  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.query-snippets button {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.8rem;
+}
+.query-snippets ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.query-snippets li {
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+.query-snippets li:hover {
+  background-color: #e0e0e0;
+}
