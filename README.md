@@ -101,6 +101,7 @@ npm run preview
 https://sqlqueryappritankar.netlify.app/
 
 ### Document URL
+https://docs.google.com/document/d/11Llt914BVwU8riHJpkAmC1L-JfXkO0fD8uXZr7ywqtM/edit?tab=t.0
 
 ### Code Walkthrough and Website Walkthrough Video URL
 
