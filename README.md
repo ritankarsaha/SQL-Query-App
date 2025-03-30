@@ -97,3 +97,9 @@ npm run build
 npm run preview
 ```
 
+### Deployed URL
+https://sqlqueryappritankar.netlify.app/
+
+### Document URL
+
+### Code Walkthrough and Website Walkthrough Video URL
