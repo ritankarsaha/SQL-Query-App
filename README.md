@@ -65,6 +65,9 @@ For extrremely large datasets, data is being processed or paginated on the serve
 The use of sql-formatter helps improve the readability of queries without impacting performance since it only processes user input when requested.
 
 
+### More information regarding the website and the code will be availabe in the doc shared below.
+
+
 ### Installation
 
 - Clone the Github Repository
