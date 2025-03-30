@@ -103,3 +103,11 @@ https://sqlqueryappritankar.netlify.app/
 ### Document URL
 
 ### Code Walkthrough and Website Walkthrough Video URL
+
+
+### Page-Speed Insights
+<img width="947" alt="Screenshot 2025-03-30 at 11 01 27 AM" src="https://github.com/user-attachments/assets/02f9a93f-4587-4b3d-a172-4067e5e42300" />
+
+<img width="956" alt="Screenshot 2025-03-30 at 11 01 40 AM" src="https://github.com/user-attachments/assets/310dfe6e-8e0a-445a-acef-ac5df9b1faa1" />
+
+<img width="956" alt="Screenshot 2025-03-30 at 11 02 00 AM" src="https://github.com/user-attachments/assets/6162abd6-9f96-48cc-90a3-b39f7604c45d" />
