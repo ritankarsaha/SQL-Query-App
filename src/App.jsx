@@ -449,7 +449,7 @@ function App() {
   return (
     <div className={`app-container ${theme}`}>
       <div className="header">
-        <h1>Dummy SQL Query Interface</h1>
+        <h1>SQL Query Interface</h1>
         <button onClick={toggleTheme} className="toggle-theme-btn">
           {theme === 'light' ? <FiMoon /> : <FiSun />}
         </button>
@@ -486,7 +486,7 @@ function App() {
       {activeTab && (
         <>
           <div className="query-controls">
-            <label htmlFor="groupSelect">Query Group:</label>
+            <label htmlFor="groupSelect">Dataset:</label>
             <select
               id="groupSelect"
               value={activeTab.groupId}

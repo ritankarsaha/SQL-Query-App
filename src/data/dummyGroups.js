@@ -3,7 +3,7 @@
 export const dummyGroups = [
   {
     id: 'customers',
-    groupName: 'Customers Queries',
+    groupName: 'Customers Table',
     queries: [
       {
         id: 'cust_all',
@@ -19,7 +19,7 @@ export const dummyGroups = [
   },
   {
     id: 'products',
-    groupName: 'Products Queries',
+    groupName: 'Products Table',
     queries: [
       {
         id: 'prod_all',
@@ -35,7 +35,7 @@ export const dummyGroups = [
   },
   {
     id: 'orders',
-    groupName: 'Orders Queries',
+    groupName: 'Orders Table',
     queries: [
       {
         id: 'ord_all',
